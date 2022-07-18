@@ -1,1 +1,1 @@
-from chain.blockchain import Blockchain
+from chain.blockchain import Blockchain, Block
