@@ -13,15 +13,15 @@ def get_chain():
     chain_data = []
     for block in blockchain.chain:
         chain_data.append(block.__dict__)
-    return jsonify({"length": len(chain_data),
-                       "chain": chain_data})
+    return make_response(jsonify({"length": len(chain_data),
+                       "chain": chain_data}), 200)
 
-@api_views.route('/new_add', methods=['POST'])
-def add_block():
-    block_data = request.get_json
-
-    block = Block(**block_data)
-    new_block = blockchain.add_block(block=block)
-    return make_response(jsonify(new_block), 200)
+@api_views.route('/mine', methods=['GET'])
+def mine():
+    # perform mine operation
+    id = blockchain.mine()
+    return make_response(jsonify({
+        "index": id
+    }), 201)
 
 
